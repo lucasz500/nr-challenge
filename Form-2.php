@@ -5,7 +5,7 @@ $XobjEdital=$_POST['objEdital'];
 $XitemEdital=$_POST['itemEdital'];
 $Xmodalidade=$_POST['modalidade'];
 
-
+//desativa verificação SSL
 $arrContextOptions=array(
     "ssl"=>array(
         "verify_peer"=>false,
@@ -13,6 +13,7 @@ $arrContextOptions=array(
     ),
 );  
 
+//constrói query
 $postdata = http_build_query(
     array(
         'codigo' => $Xcodigo,
@@ -22,6 +23,7 @@ $postdata = http_build_query(
     )
 );
 
+//constrói POST
 $opts = array('http' =>
     array(
         'method'  => 'POST',
@@ -34,20 +36,23 @@ $opts = array('http' =>
     
 );
 
+//Cria contexto POST
 $context  = stream_context_create($opts);
 
 
-
+//Baixa site após fazer o POST e o armazena na string $response
 $response = file_get_contents("https://www.compras.df.gov.br/publico/em_andamento.asp", false, $context);
 
+//Converte string response para UTF-8
       $utf8decoded= mb_convert_encoding($response, 'UTF-8', mb_detect_encoding($response, 'UTF-8, ISO-8859-1', true));
 
 
 
 
+//cria array separado por linhas
+$convert = explode("\n", $utf8decoded);
 
-$convert = explode("\n", $utf8decoded); //create array separate by new line
-
+//imprime corpo html
 echo '<html>
 <head>
 <meta charset="UTF-8"/>
@@ -59,12 +64,12 @@ echo '<html>
 
 for ($i=2524;$i<2678;$i++)  
 {
-    echo $convert[$i]; //write value by index
+    echo $convert[$i];
 }
 
 for ($j=2699;$j<2723;$j++)  
 {
-    echo $convert[$j]; //write value by index
+    echo $convert[$j];
 }
 
 echo '</body></html>';
