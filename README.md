@@ -1,5 +1,7 @@
 # nr-challenge
 
+Os scripts que criei extraem dados da página https://www.compras.df.gov.br/publico/em_andamento.asp referente aos parâmetros de busca do usuário (lista de licitações). No entanto, eles não extraem os arquivos .Doc (as licitações) por causa de limitações referentes à sessão do usuário (cookies que não são armazenados no servidor do www.compras.df.gov).
+
 Versão Online (funcionando):
 
 ----------------------------------
@@ -15,5 +17,5 @@ Versão Manual:
 
 Passos:
 
-1. Faça o upload dos arquivos Form-1.php e Form-1.php em algum servidor de sua preferência.
+1. Faça o upload dos arquivos Form-1.php e Form-2.php em algum servidor de sua preferência.
 2. Acesse o Form-1.php, preencha o formulário e clique em buscar.
